@@ -2345,3 +2345,22 @@ Processing by Api::Internal::V1::CommentsController#show as JSON
   [1m[36mPost Load (0.2ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 15]]
   [1m[35mComment Load (0.1ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ? AND "comments"."id" = ? LIMIT 1  [["post_id", 15], ["id", 36]]
 Completed 200 OK in 26ms (Views: 0.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-27 11:43:48 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/dmitry/.rvm/gems/ruby-2.4.0@kid_scout_test_app/gems/railties-4.2.10/lib/rails/templates/rails/welcome/index.html.erb (1.3ms)
+Completed 200 OK in 9ms (Views: 9.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/apple-touch-icon-precomposed.png" for 127.0.0.1 at 2017-11-27 11:43:48 +0300
+Processing by ApplicationController#page_not_found as PNG
+  Parameters: {"path"=>"apple-touch-icon-precomposed"}
+Completed 404 Not Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/apple-touch-icon.png" for 127.0.0.1 at 2017-11-27 11:43:48 +0300
+Processing by ApplicationController#page_not_found as PNG
+  Parameters: {"path"=>"apple-touch-icon"}
+Completed 404 Not Found in 0ms (ActiveRecord: 0.0ms)
