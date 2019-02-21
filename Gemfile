@@ -20,6 +20,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-its'
   gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
   # gem 'guard'
   # gem 'guard-rspec'
   # gem 'guard-bundler'

@@ -13,24 +13,24 @@ describe Api::External::V1::CommentsController, type: :controller do
 
     context '#index' do
       it 'expect to return all comments for post' do
-        get :index, post_id: @post.id, format: :json
-        expect(response).to be_success
+        get :index, params: { post_id: @post.id }, format: :json
+        expect(response).to be_successful
         commments = JSON.parse(response.body)['comments']
         expect(commments.count).to be == (@post.comments.count)
       end
       it 'expect not to return comments for draft' do
-        get :index, post_id: @draft.id, format: :json
-        expect(response).not_to be_success
+        get :index, params: { post_id: @draft.id }, format: :json
+        expect(response).not_to be_successful
       end
       it 'expect to return nothing for post without comments' do
-        get :index, post_id: @without_comments_post.id, format: :json
-        expect(response).to be_success
+        get :index, params: { post_id: @without_comments_post.id }, format: :json
+        expect(response).to be_successful
         commments = JSON.parse(response.body)['comments']
         expect(commments).to be_empty
       end
       it 'expect to show errors for non-existing post' do
         expect do
-          get :index, post_id: @non_existing_post.id, format: :json
+          get :index, params: { post_id: @non_existing_post.id }, format: :json
         end.to raise_error
       end
     end
@@ -38,28 +38,28 @@ describe Api::External::V1::CommentsController, type: :controller do
     context '#show' do
       it 'expect to show comment for post' do
         comment = @post.comments.first
-        get :show, post_id: @post.id, id: comment.id, format: :json
-        expect(response).to be_success
+        get :show, params: { post_id: @post.id, id: comment.id }, format: :json
+        expect(response).to be_successful
         found = JSON.parse(response.body)['comment']
         expect(found['id']).to be == (@post.comments.first.id)
       end
       it 'expect not to show comment for draft' do
         comment = @draft.comments.first
-        get :show, post_id: @draft.id, id: comment.id, format: :json
-        expect(response).not_to be_success
+        get :show, params: { post_id: @draft.id, id: comment.id }, format: :json
+        expect(response).not_to be_successful
       end
     end
 
     context '#new' do
       it 'expect to build new comment for post' do
         post = create :post, draft: false
-        get :new, post_id: post.id, format: :json
-        expect(response).to be_success
+        get :new, params: { post_id: post.id },  format: :json
+        expect(response).to be_successful
       end
       it 'expect not to build new comment for draft' do
         post = create :post
-        get :new, post_id: post.id, format: :json
-        expect(response).not_to be_success
+        get :new, params: { post_id: post.id }, format: :json
+        expect(response).not_to be_successful
       end
     end
 
@@ -72,7 +72,7 @@ describe Api::External::V1::CommentsController, type: :controller do
   #         post :create, post_id: existing_post.id, comment: a_new, format: :json
   #       end.to change(Comment, :count).by(1)
 
-  #       expect(response).to be_success
+  #       expect(response).to be_successful
     #   end
     # end
 
@@ -83,7 +83,7 @@ describe Api::External::V1::CommentsController, type: :controller do
   #       an_update = attributes_for :comment
   #       put :update, post_id: existing_post.id, id: existing.id, comment: an_update, format: :json
 
-  #       expect(response).to be_success
+  #       expect(response).to be_successful
     #   end
     # end
 

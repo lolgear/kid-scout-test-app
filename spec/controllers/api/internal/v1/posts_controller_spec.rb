@@ -12,7 +12,7 @@ describe Api::Internal::V1::PostsController, type: :controller do
     context '#index' do
       it 'expect to return all posts' do
         get :index, format: :json
-        expect(response).to be_success
+        expect(response).to be_successful
         posts = JSON.parse(response.body)['posts']
         expect(posts.count).to be == @all_posts.count
         expect(posts.first.keys).to include('comments')
@@ -22,8 +22,8 @@ describe Api::Internal::V1::PostsController, type: :controller do
     context '#show' do
       it 'expect to return post by id' do
         post = create :post
-        get :show, id: post.id, format: :json
-        expect(response).to be_success
+        get :show, params: { id: post.id }, format: :json
+        expect(response).to be_successful
         found = JSON.parse(response.body)['post']
         expect(found['id']).to be == post.id
       end
@@ -32,7 +32,7 @@ describe Api::Internal::V1::PostsController, type: :controller do
     context '#new' do
       it 'expect to return new post' do
         get :new, format: :json
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
@@ -40,10 +40,10 @@ describe Api::Internal::V1::PostsController, type: :controller do
       it 'expect to create new post' do
         a_new = attributes_for :post
         expect do
-          post :create, post: a_new, format: :json
+          post :create, params: { post: a_new }, format: :json
         end.to change(Post, :count).by(1)
 
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(assigns(:post)).not_to be_new_record
       end
     end
@@ -52,9 +52,9 @@ describe Api::Internal::V1::PostsController, type: :controller do
       it 'expect to update post' do
         existing = create :post
         an_update = attributes_for :post
-        put :update, id: existing.id, post: an_update, format: :json
+        put :update, params: { id: existing.id, post: an_update }, format: :json
 
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(assigns(:post).title).to be == an_update[:title]
       end
     end
@@ -67,7 +67,7 @@ describe Api::Internal::V1::PostsController, type: :controller do
         (1..count).map { create :comment, post_id: existing.id }
 
         expect do
-          delete :destroy, id: existing.id
+          delete :destroy, params: { id: existing.id }
         end.to change(Post, :count).by(-1)
 
         expect(existing.comments).to be_empty
