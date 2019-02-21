@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
   end
 
   def page_not_found
-  	head 404
+    head 404
   end
 end

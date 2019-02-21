@@ -1,3 +1,3 @@
 module Exceptions
-	class AccessDenied < StandardError; end
+  class AccessDenied < StandardError; end
 end

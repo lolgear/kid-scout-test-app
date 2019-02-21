@@ -4,6 +4,6 @@ class AddPostToComments < ActiveRecord::Migration
   end
 
   def down
-  	remove_reference :comments, :post
+    remove_reference :comments, :post
   end
 end

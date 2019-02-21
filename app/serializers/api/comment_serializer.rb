@@ -1,3 +1,3 @@
 class Api::CommentSerializer < ActiveModel::Serializer
-	attributes :id, :body
+  attributes :id, :body
 end
