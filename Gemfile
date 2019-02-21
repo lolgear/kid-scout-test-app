@@ -2,7 +2,7 @@ ruby '2.4.1'
 source 'https://rubygems.org'
 
 
-gem 'rails', '~> 4.2'
+gem 'rails', '~> 5.2'
 
 # database
 gem 'sqlite3'
@@ -16,11 +16,10 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'rspec-its'
-  gem 'shoulda-matchers'
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'guard-bundler'
-  # terminal guard notifier
-  gem 'terminal-notifier-guard', '~>1.6.1'
+  # gem 'guard'
+  # gem 'guard-rspec'
+  # gem 'guard-bundler'
+  # # terminal guard notifier
+  # gem 'terminal-notifier-guard', '~>1.6.1'
   gem 'ruby-prof'
 end
